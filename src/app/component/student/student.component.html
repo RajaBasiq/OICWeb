@@ -1,0 +1,117 @@
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+  <h2>Student Information</h2>
+  <div formGroupName="student">
+    <div>
+      <label>First Name:</label>
+      <input formControlName="firstName" />
+    </div>
+
+    <div>
+      <label>Last Name:</label>
+      <input formControlName="lastName" />
+    </div>
+
+    <div>
+      <label>Gender:</label>
+      <input formControlName="gender" />
+    </div>
+
+    <div>
+      <label>Date of Birth:</label>
+      <input type="date" formControlName="dateOfBirth" />
+    </div>
+
+    <div>
+      <label>Email:</label>
+      <input type="email" formControlName="email" />
+    </div>
+
+    <div>
+      <label>Blood Group:</label>
+      <input formControlName="bloodGroup" />
+    </div>
+
+    <div>
+      <label>Cell Number:</label>
+      <input formControlName="cellNumber" />
+    </div>
+  </div>
+  <div>
+    <label>AvailHostelFacility:</label>
+    <input type="checkbox" formControlName="availHostelFacility" />
+  </div>
+
+  <div>
+    <label>AvailLibraryFacility:</label>
+    <input type="checkbox" formControlName="availLibraryFacility" />
+  </div>
+
+  <h3>Guardian Information</h3>
+  <div formGroupName="guardian">
+    <div>
+      <label>Guardian First Name:</label>
+      <input formControlName="firstName" />
+    </div>
+
+    <div>
+      <label>Guardian Last Name:</label>
+      <input formControlName="lastName" />
+    </div>
+
+    <div>
+      <label>Relationship:</label>
+      <input formControlName="relationship" />
+    </div>
+
+    <div>
+      <label>Guardian Email:</label>
+      <input type="email" formControlName="email" />
+    </div>
+
+    <div>
+      <label>Guardian Cell Number:</label>
+      <input formControlName="cellNumber" />
+    </div>
+  </div>
+  <h3>Education History</h3>
+
+  <div formArrayName="educations">
+    <div *ngFor="let education of educations.controls; let i = index" [formGroupName]="i">
+      <div>
+        <label>Education Name:</label>
+        <input formControlName="Name" />
+      </div>
+
+      <div>
+        <label>Starting Year:</label>
+        <input type="number" formControlName="StartingYear" />
+      </div>
+
+      <div>
+        <label>Ending Year:</label>
+        <input type="number" formControlName="EndingYear" [disabled]="education.get('Ongoing').value" />
+      </div>
+
+      <div>
+        <label>Institute:</label>
+        <input formControlName="Institute" />
+      </div>
+
+      <div>
+        <label>Result Percentage:</label>
+        <input type="number" formControlName="ResultPercentage" />
+      </div>
+
+      <div>
+        <label>Ongoing:</label>
+        <input type="checkbox" formControlName="Ongoing" />
+      </div>
+
+      <button type="button" (click)="removeEducation(i)">Remove Education</button>
+      <hr />
+    </div>
+  </div>
+
+  <button type="button" (click)="addEducation()">Add Education</button>
+  <button type="submit">Submit</button>
+</form>
