@@ -9,7 +9,7 @@ import { StudentService } from 'src/app/service/student.service';
 export class StudentListComponent implements OnInit {
   columns:string[]
   data:any[]
-  title:"Students"
+  title:"Student List"
   constructor(private studentService: StudentService) 
   {  
   }
