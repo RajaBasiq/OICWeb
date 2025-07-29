@@ -11,6 +11,11 @@ const routes: Routes =
     component: StudentComponent,
   },
   {
+    path: 'student/:id',
+    component: StudentComponent,
+  },
+
+  {
     path: 'studentlist',
     component: StudentListComponent,
   },

@@ -33,7 +33,7 @@ interface Student {
   },
   availHostelFacility: boolean;
   availLibraryFacility: boolean;
-  Educations: Array<{
+  educations: Array<{
     Name: string;
     StartingYear: number;
     EndingYear?: number;
@@ -63,9 +63,18 @@ export class StudentService {
     );
   }
 
-    getStudents(): Observable<Student[]> {
+  getStudents(): Observable<Student[]> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.get<Student[]>(this.apiUrl).pipe(
+      catchError(error => {
+        console.error('Error occurred:', error);
+        throw error;
+      })
+    );
+  }
+  get(id:number): Observable<Student> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get<Student>(`${this.apiUrl}/${id}`, { headers }).pipe(
       catchError(error => {
         console.error('Error occurred:', error);
         throw error;
